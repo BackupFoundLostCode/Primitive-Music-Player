@@ -16,7 +16,7 @@ int main(){
 	
 	while (1) {
 		showPlaylist(playlist);
-		std::cout << "1. Musik spielen.\n2. Neuer Song in die Liste:" << std::endl;
+		std::cout << "1. Musik spielen[coming soon].\n2. Neuer Song in die Liste.\n3. Spiele die Liste ab." << std::endl;
 
 		std::cin >> enter;
 		if (std::cin.fail())
@@ -31,8 +31,12 @@ int main(){
 			killInput();
 			addSong(playlist, fileForSave);
 			break;
-		case 1: 
+		/*case 1:
 			playMusic(playlist);
+			break;
+			*/
+		case 3:
+			playList(playlist);
 			break;
 		default:
 			break;
