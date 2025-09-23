@@ -13,3 +13,5 @@ COMING SOON:
 *Automatic recognition of titles in music folders.
 
 *Functioning playMusic(), as transition playList(). 
+
+*English screen text.
