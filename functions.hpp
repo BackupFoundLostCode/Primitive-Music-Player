@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <filesystem>
+#include <fstream> 
 #include <Windows.h>
 void killInput() {
 	std::cin.clear();
@@ -20,7 +21,7 @@ void existsDirectory(const std::filesystem::path& pathForMusic) {
 		std::cerr << "Ordner Konnte nicht erstellt werden oder existiert beriets.\n" << std::endl;
 	}
 }
-void giveVecEntry(std::vector<std::string>& playlist) {//vector zu anfag des programms mit den einträgen aus der save.tyt füllen sonst kann man ja nichts abspielen nachhher.
+void giveVecEntry(std::vector<std::string>& playlist) {//vector zu anfag des programms mit den eintrÃ¤gen aus der save.tyt fÃ¼llen sonst kann man ja nichts abspielen nachhher.
 	std::string ram{};
 	std::ifstream read{ "save.txt" };//muss auf save.txt zugreifen, hoffe das geht ertsmal so.
 	while (getline(read, ram)) {
@@ -38,7 +39,7 @@ void addSong(std::vector<std::string>& playlist,std::ofstream& fileForSave) {
 		{
 			killInput();
 			std::cerr << "Problem beim einlesen der Eingabe" << std::endl;
-			return;//Vielleicht währe ein continue sinnvoller.
+			return;//Vielleicht wÃ¤hre ein continue sinnvoller.
 		}
 		sort(playlist.begin(), playlist.end());
 		for (const auto& s : playlist)
@@ -52,14 +53,14 @@ void addSong(std::vector<std::string>& playlist,std::ofstream& fileForSave) {
 		}
 		if (makeEntry)
 		{
-			std::cout << "Eintrag hinzugefügt!" << std::endl;
+			std::cout << "Eintrag hinzugefÃ¼gt!" << std::endl;
 			playlist.push_back(songName);
 			fileForSave << songName << std::endl;
 		}
 	}
 	catch (const std::exception&)
 	{
-		std::cerr << "Generelles Problem beim Hinzufügen des Songs!"<<std::endl;
+		std::cerr << "Generelles Problem beim HinzufÃ¼gen des Songs!"<<std::endl;
 	}
 	clear();
 }
@@ -81,16 +82,17 @@ void keepPlaying(int& song, const std::vector<std::string>& playlist) {
 	
 }
 void playMusic(const std::vector<std::string>& playlist) {
-	//irgend wie Palylists erstellen können.
+	//irgend wie Palylists erstellen kÃ¶nnen.
 	//logik stimmt so eignetlich aber playsound funktiooniert lieder nicht damit.
+	//ist ja wie playList() soll aber halt im hintergrund laufen.
 	killInput();
 	int song{};
 	int ii{};
 	bool makeEntry = true;
 	std::cout << "Welchen Song willst du spielen?\n" << std::endl;
 	std::cin >> song;
-	std::string songEnding{ playlist[song] };//wenn ich etwas eingebe was über dem index liegt schmiert das programm ab, doch beheben. Auch wird wenn an beim songauswählen etwas anders als zahlen eingibt einfach der 0 index gestatet.
-	std::string songPath = "Music\\" + songEnding;
+	std::string songPath = "Music\\" + playlist[song];
+	std::string alias{ "mySong" };
 	try
 	{
 		for (size_t i = 0; i < playlist.size(); i++)
@@ -98,12 +100,13 @@ void playMusic(const std::vector<std::string>& playlist) {
 			if (i == song) {
 				std::cout << "Es spieltD: ";
 				std::cout << playlist[i] << std::endl;
-				PlaySoundA(songPath.c_str(), NULL, SND_FILENAME | SND_ASYNC);
+				PlaySoundA(songPath.c_str(), NULL, SND_FILENAME | SND_ASYNC | SND_LOOP);//endloser loop.
 				makeEntry = false;
 				ii=song+1;
 			}
 		}
-		if (ii == song + 1)
+		
+		if (ii == song + 1)//wenn ich es hier schaffe dann macht er das autoplay.
 		{
 			for (size_t i = ii; i < playlist.size(); i++)
 			{
@@ -118,10 +121,73 @@ void playMusic(const std::vector<std::string>& playlist) {
 		{
 			std::cout << "Song nicht gefunden!" << std::endl;
 		}
+		
 	}
 	catch (const std::exception&)
 	{
 		std::cout << "ERROR!\n" << std::endl;
 	}
 	clear();
+}
+void playList(const std::vector<std::string>& playlist) {
+	killInput();
+	int song{};
+	int ii{};
+	bool makeEntry = true;
+	std::cout << "Welchen Song willst du spielen?\n" << std::endl;
+	std::cin >> song;
+	std::string songPath = "Music\\" + playlist[song];
+	std::string alias{ "mySong" };
+	try
+	{
+		for (size_t i = 0; i < playlist.size(); i++)
+		{
+			if (i == song) {
+				std::cout << "Es spielt: ";
+				std::cout << playlist[i] << std::endl;
+				PlaySoundA(songPath.c_str(), NULL, SND_FILENAME);
+				makeEntry = false;
+				if (makeEntry)
+				{
+					std::cerr << "Song nicht gefunden!" << std::endl;
+					break;
+				}
+				ii = song + 1;
+				if (ii == song + 1)
+				{
+					for (size_t i = ii; i < playlist.size(); i++)
+					{
+						std::string songEnding{ playlist[i] };
+						songPath = "Music\\" + songEnding;
+						std::cout << "Es spielt: ";
+						std::cout << playlist[i] << std::endl;
+						PlaySoundA(songPath.c_str(), NULL, SND_FILENAME);
+					}
+				}
+			}
+		}
+		/*if (ii == song + 1)
+		{
+			for (size_t i = ii; i < playlist.size(); i++)
+			{
+				std::cout << "I ist: " << i;
+				std::string songEnding{ playlist[i] };
+				songPath = "Music\\" + songEnding;
+				std::cout << "Es spielt: ";
+				std::cout << playlist[i] << std::endl;
+				PlaySoundA(songPath.c_str(), NULL, SND_FILENAME);
+			}
+		}
+		if (makeEntry)
+		{
+			std::cerr << "Song nicht gefunden!" << std::endl;
+		}
+		*/
+	}
+	catch (const std::exception&)
+	{
+		std::cerr << "ERROR!\n" << std::endl;
+	}
+	clear();
+	
 }
