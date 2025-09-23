@@ -8,5 +8,7 @@ Unfortunately, PlaySoundA() does not have autoplay or anything like that. I noti
 
 COMING SOON:
 *Playlists.
+
 *Automatic recognition of titles in music folders.
+
 *Functioning playMusic(), as transition playList(). 
