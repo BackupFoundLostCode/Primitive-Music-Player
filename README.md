@@ -12,6 +12,6 @@ COMING SOON:
 
 *Automatic recognition of titles in music folders.
 
-*Functioning playMusic(), as transition playList(). 
+*Functioning playMusic(), as transition playList(). (Should enable it to run in the background without affecting the usability of the program).
 
 *English screen text.
