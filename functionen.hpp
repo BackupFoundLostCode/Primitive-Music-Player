@@ -38,7 +38,6 @@ void showPlaylist(const std::vector<std::string>& playlist) {
 	std::cout << "\n";
 }
 void playMusic(const std::vector<std::string>& playlist) {
-	//ist ja wie playList() soll aber halt im hintergrund laufen.
 	int song{};
 	int ii{};
 	bool makeEntry = true;
@@ -52,13 +51,13 @@ void playMusic(const std::vector<std::string>& playlist) {
 			if (i == song) {
 				std::cout << "Es spieltD: ";
 				std::cout << playlist[i] << std::endl;
-				PlaySoundA(songPath.c_str(), NULL, SND_FILENAME | SND_ASYNC | SND_LOOP);//endloser loop.
+				PlaySoundA(songPath.c_str(), NULL, SND_FILENAME | SND_ASYNC | SND_LOOP);//endless Loop.
 				makeEntry = false;
 				ii=song+1;
 			}
 		}
 		
-		if (ii == song + 1)//wenn ich es hier schaffe dann macht er das autoplay.
+		if (ii == song + 1)
 		{
 			for (size_t i = ii; i < playlist.size(); i++)
 			{
@@ -112,7 +111,6 @@ void playList(const std::vector<std::string>& playlist) {
 						std::cout << "Es spielt: ";
 						std::cout << playlist[i] << std::endl;
 						PlaySoundA(songPath.c_str(), NULL, SND_FILENAME);
-						//eventuelles if das i wieder auf 0 setzt wenn size() erreicht ist um eider von vorne zu laufen. Idee: gewisse dauereinstellungen wie b dann das eben passieren soll als wert (bool denke ich) in einer txt holen und am anfang setzen für direkte dauerhafte einstellung.
 					}
 				}
 			}
@@ -125,7 +123,7 @@ void playList(const std::vector<std::string>& playlist) {
 	clear();
 	
 }
-/*void addSong(std::vector<std::string>& playlist, std::ofstream& fileForSave) {//eventuell zu gebrauchen für die playlists. um zu prüfen ob der song schon in der playlist ist. der file wird gerade nicht gefüllt, wenn er es soll dann in giveVecEntry() hinzufügen. Eventuell doch nicht unbedingt brauchbar, mann kann auch einfach duch den Vec gehen wo die gelesenden werte drin sind und dann hinzufügen in den anderen Vec/playlist.
+/*void addSong(std::vector<std::string>& playlist, std::ofstream& fileForSave) {//eventuell zu gebrauchen fÃ¼r die playlists. um zu prÃ¼fen ob der song schon in der playlist ist. der file wird gerade nicht gefÃ¼llt, wenn er es soll dann in giveVecEntry() hinzufÃ¼gen. Eventuell doch nicht unbedingt brauchbar, mann kann auch einfach duch den Vec gehen wo die gelesenden werte drin sind und dann hinzufÃ¼gen in den anderen Vec/playlist.
 	bool makeEntry = true;
 	std::string songName{};
 	try
@@ -136,7 +134,7 @@ void playList(const std::vector<std::string>& playlist) {
 		{
 			killInput();
 			std::cerr << "Problem beim einlesen der Eingabe" << std::endl;
-			return;//Vielleicht währe ein continue sinnvoller.
+			return;//Vielleicht wÃ¤hre ein continue sinnvoller.
 		}
 		sort(playlist.begin(), playlist.end());
 		for (const auto& s : playlist)
@@ -150,15 +148,16 @@ void playList(const std::vector<std::string>& playlist) {
 		}
 		if (makeEntry)
 		{
-			std::cout << "Eintrag hinzugefügt!" << std::endl;
+			std::cout << "Eintrag hinzugefÃ¼gt!" << std::endl;
 			playlist.push_back(songName);
 			fileForSave << songName << std::endl;
 		}
 	}
 	catch (const std::exception&)
 	{
-		std::cerr << "Generelles Problem beim Hinzufügen des Songs!"<<std::endl;
+		std::cerr << "Generelles Problem beim HinzufÃ¼gen des Songs!"<<std::endl;
 	}
 	clear();
 }
+
 */
