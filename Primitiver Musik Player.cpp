@@ -6,8 +6,6 @@
 #include <mmsystem.h>
 #include "functionen.hpp"
 int main(){
-	//Brauche ich den file noch?
-	//idee für Playlists, einen vector der dan vectoren spiecert jeder vector ist eine playlist. Eventuell dann auf files verzichten.
 	int enter{};
 	std::vector<std::string> playlist;
 	std::filesystem::path pathForMusic("Music");
@@ -39,7 +37,7 @@ int main(){
 				playList(playlist);
 				break;
 			default: {
-				std::cout << "Keine gültige Nummer." << std::endl;
+				std::cout << "Keine gÃ¼ltige Nummer." << std::endl;
 				killInput();
 				clear();
 			}
@@ -49,3 +47,4 @@ int main(){
 	}
 	return EXIT_SUCCESS;
 }
+
