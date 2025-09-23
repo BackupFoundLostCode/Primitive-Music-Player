@@ -137,7 +137,6 @@ void playList(const std::vector<std::string>& playlist) {
 	std::cout << "Welchen Song willst du spielen?\n" << std::endl;
 	std::cin >> song;
 	std::string songPath = "Music\\" + playlist[song];
-	std::string alias{ "mySong" };
 	try
 	{
 		for (size_t i = 0; i < playlist.size(); i++)
@@ -191,3 +190,4 @@ void playList(const std::vector<std::string>& playlist) {
 	clear();
 	
 }
+
