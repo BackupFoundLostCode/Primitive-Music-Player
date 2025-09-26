@@ -17,4 +17,4 @@ COMING SOON:
 
 *Skip.
 
-*English screen text.
+~~*English screen text.~~
