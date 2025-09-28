@@ -38,7 +38,6 @@ inline void showPlaylist(const std::vector<std::string>& playlist) {
 	std::cout << "\n";
 }
 void playMusic(const std::vector<std::string>& playlist) {
-	//ist ja wie playList() soll aber halt im hintergrund laufen. Soll das eigentliche programm werden, also das es wie PlaySoundA() ist nur das es eben nicht dann duchskipt sondern alles nacheidner abspielt aber eben mann während dessen noch das programm nutzen kann. Wie PlayList() nur das mann eben möglichkeiten von PlaySoundA() hat ohne das es dann die lsite bis zum ende skippt.
 	int song{};
 	int ii{};
 	bool makeEntry = true;
@@ -58,7 +57,7 @@ void playMusic(const std::vector<std::string>& playlist) {
 			}
 		}
 		
-		if (ii == song + 1)//wenn ich es hier schaffe dann macht er das autoplay.
+		if (ii == song + 1)
 		{
 			for (size_t i = ii; i < playlist.size(); i++)
 			{
@@ -136,40 +135,3 @@ void playList(const std::vector<std::string>& playlist) {
 		std::cerr << "ERROR!\n" << std::endl;
 	}
 }
-/*void addSong(std::vector<std::string>& playlist, std::ofstream& fileForSave) {//eventuell zu gebrauchen für die playlists. um zu prüfen ob der song schon in der playlist ist. der file wird gerade nicht gefüllt, wenn er es soll dann in giveVecEntry() hinzufügen. Eventuell doch nicht unbedingt brauchbar, mann kann auch einfach duch den Vec gehen wo die gelesenden werte drin sind und dann hinzufügen in den anderen Vec/playlist.
-	bool makeEntry = true;
-	std::string songName{};
-	try
-	{
-		std::cout<< "Gib Songnamen + endung der Datei an." << std::endl;
-		std::getline(std::cin, songName);
-		if (std::cin.fail())
-		{
-			killInput();
-			std::cerr << "Problem beim einlesen der Eingabe" << std::endl;
-			return;//Vielleicht währe ein continue sinnvoller.
-		}
-		sort(playlist.begin(), playlist.end());
-		for (const auto& s : playlist)
-		{
-			if (s == songName)
-			{
-				std::cout << "Eintrag schon vorhanden!" << std::endl;
-				makeEntry = false;
-				break;
-			}
-		}
-		if (makeEntry)
-		{
-			std::cout << "Eintrag hinzugefügt!" << std::endl;
-			playlist.push_back(songName);
-			fileForSave << songName << std::endl;
-		}
-	}
-	catch (const std::exception&)
-	{
-		std::cerr << "Generelles Problem beim Hinzufügen des Songs!"<<std::endl;
-	}
-	clear();
-}
-*/
