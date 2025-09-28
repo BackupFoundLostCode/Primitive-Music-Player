@@ -8,7 +8,7 @@ Unfortunately, PlaySoundA() does not have autoplay or anything like that. I noti
 
 COMING SOON:
 
-*Playlists.
+~~*English screen text.~~
 
 *~~Automatic recognition of titles in music folders.~~
 
@@ -17,4 +17,4 @@ COMING SOON:
 
 *Skip.
 
-~~*English screen text.~~
+*Playlists.
