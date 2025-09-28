@@ -37,49 +37,6 @@ inline void showPlaylist(const std::vector<std::string>& playlist) {
 	}
 	std::cout << "\n";
 }
-void playMusic(const std::vector<std::string>& playlist) {
-	int song{};
-	int ii{};
-	bool makeEntry = true;
-	std::cout << "Which song do you want to play?\n" << std::endl;
-	std::cin >> song;
-	std::string songPath = "Music\\" + playlist[song];
-	try
-	{
-		for (size_t i = 0; i < playlist.size(); i++)
-		{
-			if (i == song) {
-				std::cout << "It plays: ";
-				std::cout << playlist[i] << std::endl;
-				PlaySoundA(songPath.c_str(), NULL, SND_FILENAME | SND_ASYNC | SND_LOOP);//endloser loop.
-				makeEntry = false;
-				ii=song+1;
-			}
-		}
-		
-		if (ii == song + 1)
-		{
-			for (size_t i = ii; i < playlist.size(); i++)
-			{
-				std::string songEnding{ playlist[ii] };
-				songPath = "Music\\" + songEnding;
-				std::cout << "It plays: ";
-				std::cout << playlist[i] << std::endl;
-				PlaySoundA(songPath.c_str(), NULL, SND_FILENAME | SND_ASYNC);
-			}
-		}
-		if (makeEntry)
-		{
-			std::cout << "Song not found!" << std::endl;
-		}
-		
-	}
-	catch (const std::exception&)
-	{
-		std::cout << "ERROR!\n" << std::endl;
-	}
-	clear();
-}
 void playList(const std::vector<std::string>& playlist) {
 	int song{};
 	char answer{};
@@ -135,3 +92,4 @@ void playList(const std::vector<std::string>& playlist) {
 		std::cerr << "ERROR!\n" << std::endl;
 	}
 }
+
