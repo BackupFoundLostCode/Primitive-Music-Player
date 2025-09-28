@@ -7,8 +7,6 @@
 #include "functionen.hpp"
 #pragma comment(lib, "Winmm.lib")
 int main() {
-	//Brauche ich den file noch?
-	//idee für Playlists, einen vector der dan vectoren spiecert jeder vector ist eine playlist. Eventuell dann auf files verzichten.
 	int enter{};
 	std::vector<std::string> playlist;
 	std::filesystem::path pathForMusic("Music");
@@ -27,3 +25,4 @@ int main() {
 	}
 	return EXIT_SUCCESS;
 }
+
