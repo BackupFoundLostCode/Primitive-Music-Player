@@ -12,8 +12,7 @@ COMING SOON:
 
 *~~Automatic recognition of titles in music folders.~~
 
-*Functioning playMusic(), as transition playList(). 
-(Should enable it to run in the background without affecting the usability of the program and more than .wav).
+*Should enable it to run in the background without affecting the usability of the program and more than .wav.
 
 *Skip.
 
